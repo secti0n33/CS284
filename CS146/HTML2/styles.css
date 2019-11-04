@@ -1,0 +1,22 @@
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: salmon;
+}
+
+p::first-letter {
+    font-size: 200%;
+}
+
+p.pstyle{
+    color: blue;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+ul li{
+    list-style: none;
+    display: inline;
+}
