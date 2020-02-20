@@ -1,3 +1,5 @@
+package bored;
+
 import java.util.*;
 
 public class TTT
@@ -20,7 +22,7 @@ public class TTT
         board=bd;
     }
 
-    public void switch(){moveCt++;}
+    public void switchPlayer(){moveCt++;}
 
     public boolean move(int spot)
     {
