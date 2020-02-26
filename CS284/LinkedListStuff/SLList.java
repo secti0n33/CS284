@@ -180,26 +180,75 @@ public class SLList<E>
         return t;
     }
 
-    public int find(E data)
+    public void removeAll(E elem)
     {
+        Node<E> traversal=head;
+        while(traversal!=null)
+        {
+            if(head.data==elem)
+                removeFirst();
+            else
+            {
+                if(traversal.next.data==elem)
+                {
+                    traversal.next=traversal.next.next;
+                    size--;
+                }
+                traversal=traversal.next;
+            }
 
-        return -1;
+        }
+    }
+
+    /**
+     * 
+     * @return next node
+     */
+
+    public void reverse()
+    {
+        if(head==null||head.next==null)
+            return;
+
+            Node<E> traversal=head.next;
+            Node<E> last=head;
+            Node<E> oldHead=head;
+
+            while(traversal.next!=null)
+            {
+                Node<E> temp=traversal.next;
+                traversal.next=last;
+                last=traversal;
+                traversal=temp;
+            }
+            traversal.next=last;
+            oldHead.next=null;
+            head=traversal;
+    }
+
+    public void removeAdjacentDuplicates()
+    {
+        if(head==null||head.next==null)
+            return;
+        Node<E> traversal=head;
+        while(traversal!=null)
+        {
+            if(traversal.next.data==traversal.data)
+            {
+                size--;
+                traversal.next=traversal.next.next;
+            }
+            traversal=traversal.next;
+        }
     }
 
     public static void main(String[]args)
     {
         SLList<Integer>l=new SLList<Integer>();
         for(int x=0;x<10;x++)
-            l.addLast(x);
-        SLList<Integer>l2=l.clone();
-        l2.remove(5);
+            l.addLast((int)(x/2));
         System.out.println(l);
-        System.out.println(l2);
-        l.take(5);
+        l.removeAdjacentDuplicates();
         System.out.println(l);
-        l2.drop(5);
-        System.out.println(l2);
-        Pair<SLList<Integer>,SLList<Integer>> l3=l.splitAt(2);
-        System.out.println("<"+l3.getX()+","+l3.getY()+">");
     }
 }
